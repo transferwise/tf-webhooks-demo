@@ -26,10 +26,13 @@ app.listen(port, () => {
 
 
 function postInSlackChannel (webhook) {
-  let message = `New comment`
-  if (webhook.description !== null) {
-    message += `: "profileId: ${webhook.profile_id} score: ${webhook.score} desc: ${webhook.description}"`
+  
+  if (webhook.description === null) {
+    return;
   }
+  
+  let message = `New comment`
+  message += `: "profileId: ${webhook.profile_id} score: ${webhook.score} desc: ${webhook.description}"`
 
   request(channelWebhookUrl, {
     method: "POST",
