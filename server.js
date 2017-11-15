@@ -26,7 +26,7 @@ app.listen(port, () => {
 
 
 function postInSlackChannel (webhook) {
-  let message = `Check out the <${webhook.link}|new reading> suggested by ${webhook.email}`
+  let message = `New comment`
   if (webhook.description !== null) {
     message += `: "${webhook.description}"`
   }
