@@ -6,8 +6,10 @@ const mapOfFieldIds = {
 
 function parseWebhook(webhook) {
   return {
-    link: extractResponseForFieldOfId(webhook, mapOfFieldIds.link, "url"),
-    email: extractResponseForFieldOfId(webhook, mapOfFieldIds.email, "email"),
+//     link: extractResponseForFieldOfId(webhook, mapOfFieldIds.link, "url"),
+//     email: extractResponseForFieldOfId(webhook, mapOfFieldIds.email, "email"),
+    profile_id: webhook.form_response.hidden.userprofile,
+    score: webhook.form_response.hidden.score,
     description: extractResponseForFieldOfId(webhook, mapOfFieldIds.description, "text")
   }
 }
