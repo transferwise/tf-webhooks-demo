@@ -27,7 +27,7 @@ app.listen(port, () => {
 
 function postInSlackChannel (webhook) {
   
-  if (webhook.description === null) {
+  if (webhook.description === null || webhook.score > 0) {
     return;
   }
   
