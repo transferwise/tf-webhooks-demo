@@ -31,18 +31,25 @@ function postInSlackChannel (webhook) {
     return;
   }
   
-  let message = `New comment`
+  let message = ``;
   if (webhook.score == 2) {
-    message += `:rocket:`
+    message += `:rocket:`;
   }
-  if (webhook.score == -2) {
-    message += `:poop:`
+  if (webhook.score == 1) {
+    message += `:muscle:`;
+  }
+  if (webhook.score == 0) {
+    message += `:no_mouth:`;
   }
   if (webhook.score == -1) {
-    message += `:cry:`
+    message += `:headbang:`;
   }
+  if (webhook.score == -2) {
+    message += `:poop:`;
+  }
+ 
   let profileId = webhook.profile_id.replace(",", "");
-  message += `: "profile: *${profileId}* score: ${webhook.score} >>${webhook.description}"`
+  message += `Profile: *${profileId}*\nScore: *${webhook.score}*\n>${webhook.description}`;
 
   request(channelWebhookUrl, {
     method: "POST",
