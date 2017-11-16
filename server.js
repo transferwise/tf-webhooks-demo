@@ -48,7 +48,7 @@ function postInSlackChannel (webhook) {
     message += `:poop:`;
   }
  
-  let profileId = webhook.profile_id.replace(",", "");
+  let profileId = webhook.profile_id.replace(new RegExp(',', 'g'), '');
   message += `Profile: *${profileId}*\nScore: *${webhook.score}*\n>${webhook.description}`;
 
   request(channelWebhookUrl, {
