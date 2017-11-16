@@ -27,12 +27,22 @@ app.listen(port, () => {
 
 function postInSlackChannel (webhook) {
   
-  if (webhook.description === null || webhook.score > 0) {
+  if (webhook.description === null) {
     return;
   }
   
   let message = `New comment`
-  message += `: "profileId: ${webhook.profile_id} score: ${webhook.score} desc: ${webhook.description}"`
+  if (webhook.score == 2) {
+    message += `:rocket:`
+  }
+  if (webhook.score == -2) {
+    message += `:poop:`
+  }
+  if (webhook.score == -1) {
+    message += `:cry:`
+  }
+  let profileId = webhook.profile_id.replace(",", "");
+  message += `: "profile: *${profileId}* score: ${webhook.score} >>${webhook.description}"`
 
   request(channelWebhookUrl, {
     method: "POST",
